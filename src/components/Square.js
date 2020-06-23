@@ -1,5 +1,6 @@
 import React from "react";
 import { css } from '@emotion/core';
+import PropTypes from 'prop-types';
 
 const Square = (props) => {
     return (
@@ -28,5 +29,9 @@ const style = `background: #fff;
                         outline: none;
                         background: #ddd;
                     }`;
+
+Square.propTypes = {
+    onClick: PropTypes.func,
+}
 
 export default Square;

@@ -1,12 +1,7 @@
 import React from 'react';
 import Square from "./Square";
+import PropTypes from 'prop-types';
 import { css } from '@emotion/core';
-
-const style = `&:after {
-                    clear: both;
-                    content: "";
-                    display: table;
-                    }`;
 
 const Board = (props) => {
 
@@ -40,4 +35,14 @@ const Board = (props) => {
     );
 };
 
+const style = `&:after {
+                    clear: both;
+                    content: "";
+                    display: table;
+                    }`;
+
+Board.propTypes = {
+    squares: PropTypes.array,
+    onClick: PropTypes.func,
+}
 export default Board;
