@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import Board from "./Board";
 import { calculateWinner } from '../utils/game-utils';
-import {css} from "emotion";
+import { css } from '@emotion/core';
 
 const Game = () => {
 
