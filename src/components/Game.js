@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import Board from "./Board";
 import { calculateWinner } from '../utils/game-utils';
+import {css} from "emotion";
 
 const Game = () => {
 
@@ -45,14 +46,19 @@ const Game = () => {
     let status = winner ? 'Winner: ' + winner : 'Next player: ' + (isXNext ? 'X' : 'O');
 
     return (
-        <div className="game">
-            <div className="game-board">
+        <div
+            css={css`
+                    display: flex;
+                    flex-direction: row;
+                `}
+        >
+            <div>
                 <Board
                     squares={current.squares}
                     onClick={(i) => handleClick(i)}
                 />
             </div>
-            <div className="game-info">
+            <div css={css`margin-left: 20px;`}>
                 <div>{status}</div>
                 <ol>{moves}</ol>
             </div>

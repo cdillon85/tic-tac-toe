@@ -1,6 +1,12 @@
 import React from 'react';
 import Square from "./Square";
-import './styles/styles.css'
+import { css } from '@emotion/core';
+
+const style = `&:after {
+                    clear: both;
+                    content: "";
+                    display: table;
+                    }`;
 
 const Board = (props) => {
 
@@ -15,17 +21,17 @@ const Board = (props) => {
 
     return (
         <div>
-            <div className="board-row">
+            <div css={css`${style}`}>
                 {renderSquare(0)}
                 {renderSquare(1)}
                 {renderSquare(2)}
             </div>
-            <div className="board-row">
+            <div css={css`${style}`}>
                 {renderSquare(3)}
                 {renderSquare(4)}
                 {renderSquare(5)}
             </div>
-            <div className="board-row">
+            <div css={css`${style}`}>
                 {renderSquare(6)}
                 {renderSquare(7)}
                 {renderSquare(8)}
