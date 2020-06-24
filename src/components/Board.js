@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import { css } from '@emotion/core';
 
 const Board = (props) => {
-
     const renderSquare = (i) => {
         return (
             <Square

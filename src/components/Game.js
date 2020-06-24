@@ -1,10 +1,12 @@
-import React, {useState} from "react";
+import React, {useContext, useState} from "react";
 import Board from "./Board";
 import { calculateWinner } from '../utils/game-utils';
 import { css } from '@emotion/core';
+import {themes, ThemeContext} from "../context/ThemeContext";
+import PropTypes from 'prop-types';
 
-const Game = () => {
-
+const Game = (props) => {
+   const {theme, toggleTheme} = useContext(ThemeContext);
    const [history, setHistory] = useState([{
        squares: Array(9).fill(null),
    }]);
@@ -43,13 +45,24 @@ const Game = () => {
         )
     })
 
-    let status = winner ? 'Winner: ' + winner : 'Next player: ' + (isXNext ? 'X' : 'O');
+    let status = winner ? 'Winner: ' + winner + '!!!!': 'Next player: ' + (isXNext ? 'X' : 'O');
+
+    const onPlayAgain = () => {
+        toggleTheme(themes.white);
+        props.playAgain();
+    };
 
     return (
         <div
             css={css`
                     display: flex;
                     flex-direction: row;
+                    border: 2px solid; 
+                    padding: 20px; 
+                    height: 300px;
+                    width: 500px; 
+                    margin-top: 50px;
+                    ${theme.style}
                 `}
         >
             <div>
@@ -58,12 +71,24 @@ const Game = () => {
                     onClick={(i) => handleClick(i)}
                 />
             </div>
-            <div css={css`margin-left: 20px;`}>
-                <div>{status}</div>
+            <div css={css`margin-left: 25px;`}>
+                <div css={css`font-size: 25px;`}>{status}</div>
                 <ol>{moves}</ol>
+                {(winner || history.length === 10) && <button css={css
+                    `height: 50px; 
+                    width: 150px; 
+                    font-size: 25px;`
+                } onClick={() => onPlayAgain()}
+                >
+                    Play Again
+                </button>}
             </div>
         </div>
     );
 };
+
+Game.propTypes = {
+    playAgain: PropTypes.func,
+}
 
 export default Game;
